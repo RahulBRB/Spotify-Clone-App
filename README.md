@@ -5,7 +5,7 @@ Spotify Clone App is a web application that replicates the functionality of Spot
 
 ## Snapshot
 ![image](https://github.com/user-attachments/assets/adabf4f8-d732-4ab8-b7ca-df94c64d2d02)
-![image](https://github.com/user-attachments/assets/517ff0a1-3b25-41fb-b3a1-631412ed4a4c)
+![image](https://github.com/user-attachments/assets/91e47a9e-e889-4e84-a943-36cb31c6b9a2)
 ![image](https://github.com/user-attachments/assets/5933772c-ae02-4eda-8b0c-f3671d80c92b)
 
 
