@@ -15,9 +15,9 @@ export default function Login() {
       "user-read-recently-played",
       "user-top-read",
     ];
-    window.location.href = ${api_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(
+    window.location.href = `${api_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(
       " "
-    )}&response_type=token&show_dialog=true;
+    )}&response_type=token&show_dialog=true`;
   };
   return (
     <Container>
@@ -30,7 +30,7 @@ export default function Login() {
   );
 }
 
-const Container = styled.div
+const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,4 +51,4 @@ const Container = styled.div
     font-size: 1.4rem;
     cursor: pointer;
   }
-;
+`;
