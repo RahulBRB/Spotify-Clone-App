@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 import Playlist from './components/Playlist';
@@ -10,7 +10,9 @@ const App = () => {
   const [playlistName, setPlaylistName] = useState('My Playlist');  // Default playlist name
 
   const addTrackToPlaylist = (track) => {
-    setPlaylistTracks(prevTracks => [...prevTracks, track]);
+    if (!playlistTracks.find(t => t.id === track.id)) {
+      setPlaylistTracks(prevTracks => [...prevTracks, track]);
+    }
   };
 
   const removeTrackFromPlaylist = (track) => {
@@ -32,6 +34,7 @@ const App = () => {
 
     // Reset playlist
     setPlaylistTracks([]);
+    setPlaylistName('New Playlist');
   };
 
   return (

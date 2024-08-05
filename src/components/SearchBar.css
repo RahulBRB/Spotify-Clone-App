@@ -1,0 +1,22 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .search-bar input {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .search-bar button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .search-bar .error {
+    color: red;
+    margin-top: 10px;
+  }
+  

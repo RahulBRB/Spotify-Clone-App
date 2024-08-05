@@ -11,7 +11,7 @@ const Playlist = ({ tracks, name, onRemove, onSave, onNameChange }) => {
   };
 
   return (
-    <div>
+    <div className="playlist">
       <h2>
         {isEditing ? (
           <input 
@@ -24,16 +24,21 @@ const Playlist = ({ tracks, name, onRemove, onSave, onNameChange }) => {
                 handleNameChange();
               }
             }} 
+            autoFocus
           />
         ) : (
           <span onClick={() => setIsEditing(true)}>{name}</span>
         )}
       </h2>
-      <ul>
-        {tracks.map(track => (
-          <Track key={track.id} track={track} onRemove={onRemove} />
-        ))}
-      </ul>
+      {tracks.length > 0 ? (
+        <ul>
+          {tracks.map(track => (
+            <Track key={track.id} track={track} onRemove={onRemove} />
+          ))}
+        </ul>
+      ) : (
+        <p>No tracks in your playlist</p>
+      )}
       <button onClick={onSave}>Save to Spotify</button>
     </div>
   );
