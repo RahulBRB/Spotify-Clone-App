@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import SearchBar from './SearchBar';
+import SearchResults from './SearchResults';
+import Playlist from './Playlist';
 
-function App() {
+const App = () =>{
+  const [SearchResults, setSearchResults] = useState([]);
+  const [PlaylistTracks, setPlaylistTracks] = useState([]);
+
+  const addTrackToPlaylist = (track) =>{
+    setPlaylistTracks([...PlaylistTracks, track]);
+  };
+
+  const removeTrackFromPlaylist = (track) =>{
+    setPlaylistTracks(PlaylistTracks.filter(i=> i.id !== track.id));
+  };
+
+  const savePlaylist = () =>{
+
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Spotify Playlist App</h1>
+      <SearchBar setSearchResults={setSearchResults}/>
+      <SearchResults results={SearchResults} onAdd={addTrackToPlaylist} />
+      <Playlist tracks={PlaylistTracks} onRemove={removeTrackFromPlaylist} onSave={savePlaylist}/>
     </div>
-  );
-}
+  )
+} 
+
+
 
 export default App;
