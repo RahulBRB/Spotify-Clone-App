@@ -1,34 +1,53 @@
 import React, {useState, useEffect} from 'react';
-import SearchBar from './SearchBar';
-import SearchResults from './SearchResults';
-import Playlist from './Playlist';
+import SearchBar from './components/SearchBar';
+import SearchResults from './components/SearchResults';
+import Playlist from './components/Playlist';
+import { mockPlaylistTracks } from './tracksData';
 
-const App = () =>{
-  const [SearchResults, setSearchResults] = useState([]);
-  const [PlaylistTracks, setPlaylistTracks] = useState([]);
+const App = () => {
+  const [searchResults, setSearchResults] = useState(mockPlaylistTracks);  // Initialize with mock data
+  const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [playlistName, setPlaylistName] = useState('My Playlist');  // Default playlist name
 
-  const addTrackToPlaylist = (track) =>{
-    setPlaylistTracks([...PlaylistTracks, track]);
+  const addTrackToPlaylist = (track) => {
+    setPlaylistTracks(prevTracks => [...prevTracks, track]);
   };
 
-  const removeTrackFromPlaylist = (track) =>{
-    setPlaylistTracks(PlaylistTracks.filter(i=> i.id !== track.id));
+  const removeTrackFromPlaylist = (track) => {
+    setPlaylistTracks(prevTracks => prevTracks.filter(t => t.id !== track.id));
   };
 
-  const savePlaylist = () =>{
+  const updatePlaylistName = (name) => {
+    setPlaylistName(name);
+  };
 
+  const savePlaylist = () => {
+    const trackURIs = playlistTracks.map(track => track.uri);
+
+    // Mock saving to Spotify (print URIs to console)
+    console.log('Saving playlist to Spotify:', {
+      name: playlistName,
+      trackURIs
+    });
+
+    // Reset playlist
+    setPlaylistTracks([]);
   };
 
   return (
     <div>
-      <h1>Spotify Playlist App</h1>
-      <SearchBar setSearchResults={setSearchResults}/>
-      <SearchResults results={SearchResults} onAdd={addTrackToPlaylist} />
-      <Playlist tracks={PlaylistTracks} onRemove={removeTrackFromPlaylist} onSave={savePlaylist}/>
+      <h1>Jammming</h1>
+      <SearchBar setSearchResults={setSearchResults} />
+      <SearchResults results={searchResults} onAdd={addTrackToPlaylist} />
+      <Playlist 
+        tracks={playlistTracks} 
+        name={playlistName} 
+        onRemove={removeTrackFromPlaylist} 
+        onSave={savePlaylist} 
+        onNameChange={updatePlaylistName} 
+      />
     </div>
-  )
-} 
-
-
+  );
+};
 
 export default App;
